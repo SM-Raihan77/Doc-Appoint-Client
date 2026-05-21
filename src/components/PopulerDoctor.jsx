@@ -1,51 +1,71 @@
 
 
 import React from 'react';
-
-
 import { HiTrendingUp } from 'react-icons/hi';
-
-
+import { FaStar } from 'react-icons/fa'; 
+import { MdLocalHospital } from 'react-icons/md'; 
 
 const PopularDoctors = async () => {
-
-    const res = await fetch("http://localhost:5000/doctors");
-
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors`);
     const doctors = await res.json();
-
+    
     const popularDoctors = [...doctors]
-
         .sort((a, b) => b.rating - a.rating)
-
         .slice(0, 3);
 
-
-    // console.log(popularDoctors, "popular doctors");
-
     return (
-
-        <div>
-            <h1 className='text-3xl font-bold flex items-center justify-center gap-2 m-10'>
-                <HiTrendingUp className='text-green-600'/>
+        
+        <div className="max-w-7xl mx-auto w-full px-4 md:px-6 my-16">
+            
+            {/* Section Title */}
+            <h1 className='text-3xl md:text-4xl font-extrabold flex items-center justify-center gap-2 mb-12 text-slate-800'>
+                <HiTrendingUp className='text-[#00A896]' />
                 <span>Popular Doctors</span>
             </h1>
 
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
-
+            {/* Responsive Grid Layout */}
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8'>
                 {popularDoctors.map(doctor => (
+                    <div 
+                        key={doctor.id} 
+                        className='group flex flex-col items-center justify-center p-6 bg-white border border-slate-100 shadow-md hover:shadow-xl rounded-2xl transition-all duration-300 transform hover:-translate-y-1.5'
+                    >
+                        {/* Doctor Image with Ring and Zoom effect */}
+                        <div className="relative w-44 h-44 rounded-full overflow-hidden p-1 bg-gradient-to-tr from-[#00A896]/30 to-[#028090]/10 group-hover:scale-105 transition-transform duration-300">
+                            <img 
+                                src={doctor.image} 
+                                alt={doctor.name} 
+                                className='w-full h-full object-cover rounded-full bg-white' 
+                            />
+                        </div>
 
-                    <div key={doctor.id} className='flex flex-col items-center justify-center p-4 bg-white shadow-lg rounded-lg'>
-                        <img src={doctor.image} alt={doctor.name} className='w-40 h-40 rounded-full' />
-                        <h2 className='text-xl font-bold mt-4'>{doctor.name}</h2>
-                        <p className='text-gray-600 text-sm'>{doctor.specialty}</p>
-                        <p className='text-gray-600 text-sm'>{doctor.rating} ratings</p>
+                        {/* Doctor Name */}
+                        <h2 className='text-xl font-bold mt-5 text-slate-800 group-hover:text-[#028090] transition-colors duration-200'>
+                            {doctor.name}
+                        </h2>
+                        
+                        {/* Specialty Container with Subtle Background */}
+                        <p className='inline-flex items-center gap-1.5 text-slate-600 text-sm font-medium mt-1.5 px-3 py-1 bg-slate-50 border border-slate-100 rounded-full'>
+                            <MdLocalHospital className="text-[#00A896] text-xs" />
+                            {doctor.specialty}
+                        </p>
+                        
+                        {/* Ratings Section with Star Icon */}
+                        <div className='flex items-center gap-1 mt-4 text-amber-500 font-semibold text-sm bg-amber-50/50 px-3 py-1 rounded-lg border border-amber-100/50'>
+                            <FaStar className="text-xs" />
+                            <span>{doctor.rating}</span>
+                            <span className='text-slate-400 font-normal text-xs'>ratings</span>
+                        </div>
+
+                        {/* Action Button: Profile View */}
+                        <button className="mt-6 w-full py-2.5 bg-slate-50 hover:bg-gradient-to-r hover:from-[#00A896] hover:to-[#028090] text-slate-600 hover:text-white border border-slate-200 hover:border-transparent font-medium text-sm rounded-xl transition-all duration-300">
+                            View Profile
+                        </button>
                     </div>
-
                 ))}
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default PopularDoctors;
-

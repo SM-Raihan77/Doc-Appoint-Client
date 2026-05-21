@@ -13,7 +13,7 @@ const dashboardPage = async () => {
     console.log(token);
     const user = session?.user;
     // console.log(user);
-    const res = await fetch(`http://localhost:5000/dashboard/${user?.id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/dashboard/${user?.id}`, {
         headers: {
             Authorization: `Bearer ${token}`,
         }

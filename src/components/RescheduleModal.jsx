@@ -65,7 +65,7 @@ const RescheduleModal = ({
 
             // backend update
             const res = await fetch(
-                `http://localhost:5000/bookings/${booking._id}`,
+                `${process.env.NEXT_PUBLIC_SERVER_URL}/bookings/${booking._id}`,
                 {
                     method: "PATCH",
 

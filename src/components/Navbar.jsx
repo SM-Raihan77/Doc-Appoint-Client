@@ -59,7 +59,7 @@ export default function Navbar() {
                     <div className="flex items-center ">
                         <div className="flex items-center justify-center ">
                             <Image
-                                src="/assets/Logo.png"
+                                src="/assets/logo.png"
                                 alt="Logo"
                                 width={100}
                                 height={30}

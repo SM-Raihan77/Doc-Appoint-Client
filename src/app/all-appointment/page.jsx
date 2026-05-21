@@ -12,7 +12,7 @@ const allAppointmentPage = async ({ searchParams }) => {
 
     // fetching data from server using query params  &search=${search}
 
-    const res = await fetch(`http://localhost:5000/doctors?sortBy=${sortBy}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors?sortBy=${sortBy}`, {
     cache: "no-store", 
     // headers: {
     //     Authorization: `Bearer ${token}`,
