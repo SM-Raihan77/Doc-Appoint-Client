@@ -1,9 +1,9 @@
 
-
 import React from 'react';
 import { HiTrendingUp } from 'react-icons/hi';
 import { FaStar } from 'react-icons/fa'; 
 import { MdLocalHospital } from 'react-icons/md'; 
+import Image from 'next/image'; 
 
 const PopularDoctors = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/doctors`);
@@ -14,7 +14,6 @@ const PopularDoctors = async () => {
         .slice(0, 3);
 
     return (
-        
         <div className="max-w-7xl mx-auto w-full px-4 md:px-6 my-16">
             
             {/* Section Title */}
@@ -30,13 +29,18 @@ const PopularDoctors = async () => {
                         key={doctor.id} 
                         className='group flex flex-col items-center justify-center p-6 bg-white border border-slate-100 shadow-md hover:shadow-xl rounded-2xl transition-all duration-300 transform hover:-translate-y-1.5'
                     >
-                        {/* Doctor Image with Ring and Zoom effect */}
-                        <div className="relative w-44 h-44 rounded-full overflow-hidden p-1 bg-gradient-to-tr from-[#00A896]/30 to-[#028090]/10 group-hover:scale-105 transition-transform duration-300">
-                            <img 
-                                src={doctor.image} 
-                                alt={doctor.name} 
-                                className='w-full h-full object-cover rounded-full bg-white' 
-                            />
+                        {/* Doctor Image Container */}
+                        <div className="relative w-44 h-44 rounded-full p-1 bg-gradient-to-tr from-[#00A896]/30 to-[#028090]/10 group-hover:scale-105 transition-transform duration-300">
+                            
+                            <div className="relative w-full h-full rounded-full overflow-hidden bg-white">
+                                <Image 
+                                    src={doctor.image} 
+                                    alt={doctor.name} 
+                                    fill 
+                                    sizes="(max-w-7xl) 100vw"
+                                    className='object-cover rounded-full' 
+                                />
+                            </div>
                         </div>
 
                         {/* Doctor Name */}
@@ -44,20 +48,20 @@ const PopularDoctors = async () => {
                             {doctor.name}
                         </h2>
                         
-                        {/* Specialty Container with Subtle Background */}
+                        {/* Specialty */}
                         <p className='inline-flex items-center gap-1.5 text-slate-600 text-sm font-medium mt-1.5 px-3 py-1 bg-slate-50 border border-slate-100 rounded-full'>
                             <MdLocalHospital className="text-[#00A896] text-xs" />
                             {doctor.specialty}
                         </p>
                         
-                        {/* Ratings Section with Star Icon */}
+                        {/* Ratings */}
                         <div className='flex items-center gap-1 mt-4 text-amber-500 font-semibold text-sm bg-amber-50/50 px-3 py-1 rounded-lg border border-amber-100/50'>
                             <FaStar className="text-xs" />
                             <span>{doctor.rating}</span>
                             <span className='text-slate-400 font-normal text-xs'>ratings</span>
                         </div>
 
-                        {/* Action Button: Profile View */}
+                        {/* Action Button */}
                         <button className="mt-6 w-full py-2.5 bg-slate-50 hover:bg-gradient-to-r hover:from-[#00A896] hover:to-[#028090] text-slate-600 hover:text-white border border-slate-200 hover:border-transparent font-medium text-sm rounded-xl transition-all duration-300">
                             View Profile
                         </button>
