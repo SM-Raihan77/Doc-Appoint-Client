@@ -1,104 +1,52 @@
-// "use client";
 
-// import { useRouter, useSearchParams } from "next/navigation";
-// import { useState } from "react";
+"use client";
 
-// const SearchBar = () => {
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { FiSearch } from "react-icons/fi"; 
 
-//     const router = useRouter();
-//     const searchParams = useSearchParams();
+const SearchBar = () => {
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
 
-//     const currentSearch = searchParams.get("search") || "";
+    const handleSearch = (e) => {
+        const value = e.target.value;
+        const params = new URLSearchParams(searchParams);
 
-//     const [searchText, setSearchText] = useState(currentSearch);
+        if (value) {
+            params.set("search", value);
+        } else {
+            params.delete("search");
+        }
 
-//     const handleSearch = () => {
+        router.push(`${pathname}?${params.toString()}`);
+    };
 
-//         const params = new URLSearchParams(searchParams);
+    return (
+        <div className="flex flex-col gap-1 w-full sm:w-72">
+           
+            <label className="text-[11px] font-bold text-slate-400 uppercase tracking-wider pl-1">
+                Search Doctor By
+            </label>
 
-//         if (searchText) {
-//             params.set("search", searchText);
-//         } else {
-//             params.delete("search");
-//         }
+            
+            <div className="relative flex items-center">
+               
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                    <FiSearch className="text-slate-400 text-base" />
+                </div>
 
-//         router.push(`/allAppointment?${params.toString()}`);
+                
+                <input
+                    type="text"
+                    placeholder="Search doctor by name..."
+                    onChange={handleSearch}
+                    defaultValue={searchParams.get("search") || ""}
+                    className="w-full pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-700 placeholder-slate-400/80 focus:outline-none focus:border-[#00A896] focus:ring-4 focus:ring-[#00A896]/5 transition-all shadow-3xs"
+                />
+            </div>
+        </div>
+    );
+};
 
-//         router.refresh();
-//     };
-
-//     return (
-//         <div className="flex gap-2">
-
-//             <input
-//                 type="text"
-//                 placeholder="Search Doctor..."
-//                 value={searchText}
-//                 onChange={(e) => setSearchText(e.target.value)}
-//                 className="border px-4 py-2 rounded-md"
-//             />
-
-//             <button
-//                 onClick={handleSearch}
-//                 className="bg-blue-600 text-white px-4 py-2 rounded-md"
-//             >
-//                 Search
-//             </button>
-
-//         </div>
-//     );
-// };
-
-// export default SearchBar;
-
-
-
-// 'use client';
-// import { Button } from '@heroui/react';
-
-// import React, { useEffect, useState } from 'react';
-// import { FaSearch } from 'react-icons/fa';
-
-
-// const SearchBar = () => {
-//     const [searchText, setSearchText] = useState("");
-//     const [searchParams, setSearchParams] = useState([]);
-//     const [query, setQuery] = useState("");
-
-//     useEffect(() => {
-//         const getData = async () => {
-//             const res = await fetch(`http://localhost:5000/doctors?search=${searchText}`);
-//             const data = await res.json();
-//             setSearchParams(data);
-//         };
-//         getData();
-//     }, [searchText]);
-
-//     const filterDoctors = (doctors) => doctors.name.toLoweCase().includes(searchText.toLowerCase());
-
-//     const handleSearch = () => {
-//         setSearchText("");
-//         setSearchParams([]);
-//     };
-//     return (
-//         <div>
-//             <div className="flex gap-2 mb-6 justify-end">
-//                 <input
-//                     type="text"
-//                     placeholder="Search..."
-//                     className="border p-1 w-48 rounded-md text-sm"
-//                     onChange={(e) => setSearchText(e.target.value)}
-//                 />
-
-//                 <Button
-//                     onClick={handleSearch}
-//                     className="bg-purple-500 text-white hover:bg-purple-600"
-//                 >
-//                     <FaSearch />
-//                 </Button>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default SearchBar;
+export default SearchBar;
