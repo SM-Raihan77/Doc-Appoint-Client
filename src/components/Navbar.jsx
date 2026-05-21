@@ -112,7 +112,7 @@ export default function Navbar() {
                                     </Avatar>
                                 </li>
                                 <li>
-                                    <Button onClick={handleSignOut} size="sm" variant="danger" className={"rounded-none"}>
+                                    <Button onClick={handleSignOut} size="sm" variant="danger" className={"rounded-2xl"}>
                                         Logout
                                     </Button>
                                 </li>

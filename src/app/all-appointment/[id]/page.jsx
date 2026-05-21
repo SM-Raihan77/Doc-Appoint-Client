@@ -9,6 +9,9 @@ import { FiClock, FiActivity } from 'react-icons/fi';
 import { MdLocalHospital } from 'react-icons/md';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
+export const metadata = {
+    title: "Doctor Details",
+};
 
 const DoctorDetailsPage = async ({ params }) => {
   const session = await auth.api.getSession({

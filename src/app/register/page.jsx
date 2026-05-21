@@ -1,131 +1,3 @@
-// 'use client';
-// import { authClient } from '@/lib/auth-client';
-
-// import { Button, Card, Description, FieldError, Form, Input, Label, Separator, TextField } from '@heroui/react';
-// import React from 'react';
-// import { FcGoogle } from 'react-icons/fc';
-// import { toast } from 'react-toastify';
-
-// const SignUpPage = () => {
-//     const onSubmit = async (e) => {
-//         e.preventDefault();
-
-//         const formData = new FormData(e.currentTarget);
-//         const user = Object.fromEntries(formData.entries());
-
-//         console.log("Form Submitted Data:", user);
-
-//         const { data, error } = await authClient.signUp.email({
-//             email: user.email,
-//             password: user.password,
-//             name: user.name,
-//             image: user.image,
-//         });
-//         if (data) {
-
-
-//             toast.success("Account created successfully");
-//             // redirect("/");
-//         }
-
-//         if (error) {
-//             // toast
-//             toast.error("Error creating account");
-//         }
-//         const handleGoogleSignin = async () => {
-//             await authClient.signIn.social({
-//                 provider: "google"
-//             });
-//         };
-
-
-//         return (
-//             <div className="max-w-7xl mx-auto">
-//                 <div className="text-center my-3">
-//                     <h1 className="text-2xl font-bold">Create Account</h1>
-//                     <p>Start your adventure with Wanderlust</p>
-//                 </div>
-//                 <Card className="border rounded-none">
-//                     <Form onSubmit={onSubmit} className="flex w-96 flex-col gap-4">
-//                         <TextField isRequired name="name" type="text">
-//                             <Label>Name</Label>
-//                             <Input placeholder="Enter your name" />
-//                             <FieldError />
-//                         </TextField>
-
-//                         <TextField name="image" type="url">
-//                             <Label>Image URL</Label>
-//                             <Input placeholder="Image url" />
-//                             <FieldError />
-//                         </TextField>
-
-//                         <TextField
-//                             isRequired
-//                             name="email"
-//                             type="email"
-//                             validate={(value) => {
-//                                 if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-//                                     return "Please enter a valid email address";
-//                                 }
-//                                 return null;
-//                             }}
-//                         >
-//                             <Label>Email</Label>
-//                             <Input placeholder="john@example.com" />
-//                             <FieldError />
-//                         </TextField>
-//                         <TextField
-//                             isRequired
-//                             minLength={8}
-//                             name="password"
-//                             type="password"
-//                             validate={(value) => {
-//                                 if (value.length < 8) {
-//                                     return "Password must be at least 8 characters";
-//                                 }
-//                                 if (!/[A-Z]/.test(value)) {
-//                                     return "Password must contain at least one uppercase letter";
-//                                 }
-//                                 if (!/[0-9]/.test(value)) {
-//                                     return "Password must contain at least one number";
-//                                 }
-//                                 return null;
-//                             }}
-//                         >
-//                             <Label>Password</Label>
-//                             <Input placeholder="Enter your password" />
-//                             <Description>
-//                                 Must be at least 8 characters with 1 uppercase and 1 number
-//                             </Description>
-//                             <FieldError />
-//                         </TextField>
-//                         <div className="flex justify-center gap-2">
-//                             <Button className={"rounded-none w-full bg-cyan-500"} type="submit">
-//                                 Create Account
-//                             </Button>
-//                         </div>
-//                     </Form>
-//                     <div className="flex justify-center items-center gap-3">
-//                         <Separator />
-//                         <div className="whitespace-nowrap"> Or sign up with </div>
-//                         <Separator />
-//                     </div>
-//                     <div>
-//                         <Button
-//                             onClick={handleGoogleSignin}
-
-//                             variant="outline" className={'w-full rounded-none'}>
-//                             <FcGoogle /> Sign in with Google
-//                         </Button>
-//                     </div>
-//                 </Card>
-//             </div>
-//         );
-//     };
-
-//     export default SignUpPage;
-
-
 
 
 'use client';
@@ -134,6 +6,7 @@ import { Button, Card, Description, FieldError, Form, Input, Label, Separator, T
 import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { toast } from 'react-toastify';
+
 
 const SignUpPage = () => {
     const handleSubmit = async (e) => {
@@ -164,89 +37,63 @@ const SignUpPage = () => {
     };
 
     return (
-        <div className="max-w-7xl mx-auto">
-            <div className="text-center my-3">
-                <h1 className="text-2xl font-bold">Create Account</h1>
-                <p>Start your adventure with Wanderlust</p>
-            </div>
-            <Card className="border rounded-none">
-                <Form onSubmit={handleSubmit} className="flex w-96 flex-col gap-4">
-                    <TextField isRequired name="name" type="text">
-                        <Label>Name</Label>
-                        <Input placeholder="Enter your name" />
+        <div className="min-h-[80vh] flex items-center justify-center px-4">
+            <Card className="w-full max-w-md p-8 shadow-xl border border-gray-100 rounded-3xl">
+                <div className="text-center mb-8">
+                    <h1 className="text-3xl font-bold text-gray-800">Create Account</h1>
+                    <p className="text-gray-500 mt-2">Join us and start booking your appointments easily.</p>
+                </div>
+
+                <Form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                    <TextField isRequired name="name" type="text" className="w-full">
+                        <Label className="text-sm font-medium mb-1">Name</Label>
+                        <Input placeholder="Enter your name" className="w-full p-2 border rounded-xl" />
                         <FieldError />
                     </TextField>
 
-                    <TextField name="image" type="url">
-                        <Label>Image URL</Label>
-                        <Input placeholder="Image url" />
+                    <TextField name="image" type="url" className="w-full">
+                        <Label className="text-sm font-medium mb-1">Image URL</Label>
+                        <Input placeholder="https://example.com/image.jpg" className="w-full p-2 border rounded-xl" />
                         <FieldError />
                     </TextField>
 
-                    <TextField
-                        isRequired
-                        name="email"
-                        type="email"
-                        validate={(value) => {
-                            if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-                                return "Please enter a valid email address";
-                            }
-                            return null;
-                        }}
-                    >
-                        <Label>Email</Label>
-                        <Input placeholder="john@example.com" />
+                    <TextField isRequired name="email" type="email" className="w-full">
+                        <Label className="text-sm font-medium mb-1">Email</Label>
+                        <Input placeholder="john@example.com" className="w-full p-2 border rounded-xl" />
                         <FieldError />
                     </TextField>
 
-                    <TextField
-                        isRequired
-                        minLength={8}
-                        name="password"
-                        type="password"
-                        validate={(value) => {
-                            if (value.length < 8) {
-                                return "Password must be at least 8 characters";
-                            }
-                            if (!/[A-Z]/.test(value)) {
-                                return "Password must contain at least one uppercase letter";
-                            }
-                            if (!/[0-9]/.test(value)) {
-                                return "Password must contain at least one number";
-                            }
-                            return null;
-                        }}
-                    >
-                        <Label>Password</Label>
-                        <Input placeholder="Enter your password" />
-                        <Description>
+                    <TextField isRequired minLength={8} name="password" type="password" className="w-full">
+                        <Label className="text-sm font-medium mb-1">Password</Label>
+                        <Input placeholder="••••••••" className="w-full p-2 border rounded-xl" />
+                        <Description className="text-xs text-gray-400 mt-1">
                             Must be at least 8 characters with 1 uppercase and 1 number
                         </Description>
                         <FieldError />
                     </TextField>
 
-                    <div className="flex justify-center gap-2">
-                        <Button className="rounded-none w-full bg-cyan-500" type="submit">
-                            Create Account
-                        </Button>
-                    </div>
+                    <Button 
+                        type="submit" 
+                        className="w-full bg-[#00A896] hover:bg-[#028090] text-white font-semibold py-3 rounded-full transition-all duration-300 shadow-md mt-2"
+                    >
+                        Create Account
+                    </Button>
                 </Form>
 
-                <div className="flex justify-center items-center gap-3">
-                    <Separator />
-                    <div className="whitespace-nowrap"> Or sign up with </div>
-                    <Separator />
+                <div className="flex items-center gap-4 my-6">
+                    <Separator className="flex-1" />
+                    <span className="text-sm text-gray-400">OR</span>
+                    <Separator className="flex-1" />
                 </div>
 
-                <div>
-                    <Button
-                        onClick={handleGoogleSignin}
-                        variant="outline"
-                        className="w-full rounded-none"
-                    >
-                        <FcGoogle /> Sign in with Google
-                    </Button>
-                </div>
+                <Button
+                    onPress={handleGoogleSignin}
+                    variant="outline"
+                    className="w-full border border-gray-200 hover:bg-gray-50 py-3 rounded-full flex items-center justify-center gap-2 transition-all"
+                >
+                    <FcGoogle className="text-xl" /> 
+                    <span className="font-medium text-gray-700">Sign up with Google</span>
+                </Button>
             </Card>
         </div>
     );

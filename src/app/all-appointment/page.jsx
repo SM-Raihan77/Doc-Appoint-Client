@@ -3,6 +3,10 @@ import SearchBar from "@/components/SearchBar";
 import DoctorCard from "../../components/DoctorCard";
 import SortDropdown from "../../components/SortDropdown";
 
+export const metadata = {
+    title: "All Appointments",
+};
+
 const allAppointmentPage = async ({ searchParams }) => {
     const currentParams = await searchParams;
     const sortBy = currentParams?.sortBy || "default";
