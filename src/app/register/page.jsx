@@ -3,6 +3,7 @@
 'use client';
 import { authClient } from '@/lib/auth-client';
 import { Button, Card, Description, FieldError, Form, Input, Label, Separator, TextField } from '@heroui/react';
+import { redirect } from 'next/navigation';
 import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { toast } from 'react-toastify';
@@ -23,9 +24,10 @@ const SignUpPage = () => {
         });
         if (data) {
             toast.success("Account created successfully");
-            // redirect("/");
+            redirect("/");
         }
         if (error) {
+            console.error("Error creating account:", error);    
             toast.error("Error creating account");
         }
     };
@@ -34,6 +36,7 @@ const SignUpPage = () => {
         await authClient.signIn.social({
             provider: "google"
         });
+        toast.success("Logged in successfully");
     };
 
     return (

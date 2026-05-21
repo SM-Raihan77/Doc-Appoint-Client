@@ -15,7 +15,7 @@ export default function HealthExpertBanner() {
             <div className="relative w-full h-full rounded-xl overflow-hidden bg-white">
               <Image
                 
-                src="/assets/Banner-2.jpg" 
+                src="/assets/Banner-2.jpg"
                 alt="Doctor consulting with a patient"
                 fill
                 className="object-cover group-hover:scale-105 transition-transform duration-500"

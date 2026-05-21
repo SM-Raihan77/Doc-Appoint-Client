@@ -117,13 +117,18 @@ export default function Navbar() {
                                     </Button>
                                 </li>
                             </>) : (
-                            <> <NavLink href="/login">
+                            <>
+                            <div className="flex items-center gap-3">
+                                 <NavLink href="/login">
                                 Login
                             </NavLink>
 
                                 <NavLink href="/register">
                                     Sign Up
-                                </NavLink></>)
+                                </NavLink>
+                            </div>
+                            
+                                </>)
                         }
                     </div>
                 </div>
@@ -179,18 +184,21 @@ export default function Navbar() {
                                         </Avatar>
                                     </li>
                                     <li>
-                                        <Button onClick={handleSignOut} size="sm" variant="danger" className={"rounded-none"}>
+                                        <Button onClick={handleSignOut} size="sm" variant="danger" className={"rounded-2xl w-full"}>
                                             Logout
                                         </Button>
                                     </li>
                                 </>) : (
-                                <> <NavLink href="/login">
-                                    Login
-                                </NavLink>
+                                <> 
+                                <div className="flex items-center justify-between gap-3">
+                                 <NavLink href="/login">
+                                Login
+                            </NavLink>
 
-                                    <NavLink href="/register">
-                                        Sign Up
-                                    </NavLink></>)
+                                <NavLink href="/register">
+                                    Sign Up
+                                </NavLink>
+                            </div></>)
                             }
                         </ul>
                     </motion.div>

@@ -20,8 +20,10 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning> 
-    <body className={OutfitFont.className}></body>
+    <html
+      lang="en"
+      className={`${OutfitFont.className} bg-background/70 backdrop-blur-xl`}
+    >
       <body className="min-h-full flex flex-col">
         <ThemesProvider>
         <Navbar />
