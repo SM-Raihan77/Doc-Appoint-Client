@@ -308,10 +308,12 @@ const RescheduleModal = ({
                                                 Cancel
                                             </Button>
 
-                                            <Button type="submit">
+                                            <Button
+                                                type="submit"
+                                                className="w-full bg-[#00A896] hover:bg-[#028090] text-white font-semibold py-2.5 rounded-full shadow-md shadow-teal-600/10 transition-all duration-300"
+                                            >
                                                 Update Booking
                                             </Button>
-
                                         </Modal.Footer>
                                     </form>
                                 </Surface>
