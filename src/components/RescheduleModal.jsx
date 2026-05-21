@@ -68,10 +68,12 @@ const RescheduleModal = ({ booking, bookings, setBookings }) => {
         <div>
 
             <Modal isOpen={isOpen} onOpenChange={setIsOpen}>
-                <Button onPress={() => setIsOpen(true)} className="border py-2 rounded-full hover:bg-gray-100 transition">
+                <Button
+                    onPress={() => setIsOpen(true)}
+                    className="w-full sm:w-auto bg-[#00A896] hover:bg-[#028090] text-white font-semibold px-6 py-2.5 rounded-full shadow-md shadow-teal-600/10 transition-all duration-300"
+                >
                     Reschedule
                 </Button>
-
                 <Modal.Backdrop>
                     <Modal.Container placement="auto">
                         <Modal.Dialog className="sm:max-w-md">

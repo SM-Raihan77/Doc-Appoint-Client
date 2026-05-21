@@ -10,19 +10,7 @@ export function DeleteAlert({ booking,
     const { _id, patioName } = booking;
     console.log(_id, "id");
 
-    //   const handleDelete = async () => {
-    //     const res = await fetch(`http://localhost:5000/bookings/${_id}`, {
-    //       method: "DELETE",
-    //       headers: {
-    //         "content-type": "application/json",
-    //       },
-    //       credentials: "include"
-    //     });
 
-    //     const data = await res.json();
-
-    //     console.log(data);
-    //   };
 
 
     const handleDelete = async () => {
@@ -56,8 +44,12 @@ export function DeleteAlert({ booking,
     };
     return (
         <AlertDialog>
-            <Button className={"text-red-500 rounded-none"} variant="outline">
-                <TrashBin /> Delete
+            <Button
+                className="w-full sm:w-auto bg-transparent border border-red-200 text-red-600 hover:bg-red-50 hover:border-red-300 font-semibold px-6 py-2.5 rounded-full transition-all duration-300 flex items-center gap-2"
+                variant="outline"
+            >
+                <TrashBin className="size-4" />
+                Delete
             </Button>
             <AlertDialog.Backdrop>
                 <AlertDialog.Container>
