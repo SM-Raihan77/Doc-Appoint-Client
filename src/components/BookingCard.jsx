@@ -98,7 +98,7 @@ const BookingCard = ({ bookingData }) => {
                     
                     <div className="flex flex-row lg:flex-col gap-3 w-full lg:w-[160px] justify-end">
                         
-                        
+                    
                         <div className="w-full transition-all duration-200 transform hover:-translate-y-0.5">
                             <RescheduleModal
                                 booking={booking}

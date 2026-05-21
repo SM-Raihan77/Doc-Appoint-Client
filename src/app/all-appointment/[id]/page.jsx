@@ -5,6 +5,8 @@ import Image from 'next/image';
 import React from 'react';
 import { IoLocationOutline } from 'react-icons/io5';
 import { LuCalendarDays } from 'react-icons/lu';
+import { FiClock, FiActivity } from 'react-icons/fi'; 
+import { MdLocalHospital } from 'react-icons/md';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 
@@ -27,101 +29,131 @@ const DoctorDetailsPage = async ({ params }) => {
 
   const { name, specialty, image, experience, description, availability, hospital, fee, location, _id } = doctorData;
   const tags = ["General Care", "Consultation", "Expert Advice", "Checkup"]
-  return (
-    <div>
-      <h1>Doctor Details</h1>
 
+return (
+  
+  <div className="w-full flex flex-col items-center justify-start min-h-screen bg-transparent py-12 px-4 md:px-6 lg:px-8">
+    
+  
+    <div className="max-w-7xl w-full flex flex-col">
+      
+      
+      <div className="flex flex-col items-center text-center border-b border-slate-100 pb-6 mb-8 w-full">
+        
+        <div className="p-2.5 bg-[#00A896]/10 rounded-xl text-[#00A896] w-fit mb-3">
+          <MdLocalHospital className="text-2xl" />
+        </div>
+        
+        
+        <div>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-slate-800 tracking-tight">
+            Doctor Details
+          </h1>
+          <p className="text-sm text-slate-500 font-medium mt-1">
+            View professional profile and check schedule
+          </p>
+        </div>
+      </div>
 
-
-      <div className="w-full bg-[#1E2939] border border-gray-100 rounded-2xl shadow-sm p-5 md:p-6 hover:shadow-md transition-shadow duration-300">
+      
+      <div className="w-full bg-slate-50/80 border border-slate-200/60 rounded-2xl shadow-xs p-6 md:p-8 hover:shadow-md transition-all duration-300">
 
         {/* Top Part: Image and Basic Info */}
-        <div className="flex flex-col sm:flex-row gap-5 items-start">
-          {/* Doctor Image with Beautiful Profile Circle */}
-          <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border-2 border-[#05696E]/20 flex-shrink-0 mx-auto sm:mx-0">
-            <Image
-              src={image}
-              alt={name}
-              fill
-              sizes="(max-width: 768px) 96px, 112px"
-              className="object-cover object-center"
-              priority={false}
-            />
+        <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start text-center sm:text-left">
+          
+          
+          <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-full p-1 bg-gradient-to-tr from-[#00A896]/20 to-[#028090]/10 flex-shrink-0">
+            <div className="relative w-full h-full rounded-full overflow-hidden bg-white">
+              <Image
+                src={image}
+                alt={name}
+                fill
+                sizes="(max-w-7xl) 100vw"
+                className="object-cover"
+                priority
+              />
+            </div>
           </div>
 
           {/* Doctor Info */}
-          <div className="flex-1 text-center sm:text-left w-full">
-            <h2 className="text-xl md:text-2xl font-bold text-gray-800 hover:text-[#05696E] transition-colors duration-200 cursor-pointer">
+          <div className="flex-1 space-y-2 w-full">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-800">
               {name}
             </h2>
-            <p className="text-sm font-semibold text-gray-500 mt-0.5">
+            <p className="text-sm font-semibold text-slate-500">
               MBBS, FCPS, MS (Specialist)
             </p>
-            <p className="text-base font-medium text-[#05696E] mt-1">
+            
+            <p className="inline-flex items-center gap-1.5 text-[#028090] text-sm font-bold px-3 py-1 bg-[#028090]/5 border border-[#028090]/10 rounded-full mt-1">
               {specialty}
             </p>
-            <span className="inline-block bg-cyan-50 text-cyan-700 text-xs font-semibold px-2.5 py-1 rounded-full mt-2">
-              {experience} of Experience Overall
-            </span>
+            
+            <div className="pt-1">
+              <span className="inline-flex items-center gap-1 bg-cyan-50 text-cyan-700 text-xs font-bold px-3 py-1 rounded-full border border-cyan-100">
+                <FiActivity className="text-xs" />
+                {experience} of Experience Overall
+              </span>
+            </div>
           </div>
         </div>
 
         {/* Middle Part: Hospital and Availability */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6 pt-5 border-t border-gray-100 text-sm text-gray-600">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-8 pt-6 border-t border-slate-200/60 text-slate-700">
+          
           {/* Hospital Details */}
-          <div className="flex items-start gap-2.5">
-            <IoLocationOutline className="text-xl text-[#05696E] flex-shrink-0 mt-0.5" />
+          <div className="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-100 shadow-3xs">
+            <IoLocationOutline className="text-xl text-[#00A896] flex-shrink-0 mt-0.5" />
             <div>
-              <h4 className="font-bold text-gray-800">{hospital}</h4>
-              <p className="text-xs text-gray-500 mt-0.5">{location}</p>
+              <h4 className="font-bold text-slate-800">{hospital || "Chittagong Medical College"}</h4>
+              <p className="text-xs text-slate-500 mt-1 font-medium">{location || "Bashundhara R/A, Dhaka"}</p>
             </div>
           </div>
 
           {/* Availability Details */}
-          <div className="flex items-start gap-2.5">
-            <LuCalendarDays className="text-xl text-cyan-600 flex-shrink-0 mt-0.5" />
+          <div className="flex items-start gap-3 bg-white p-4 rounded-xl border border-slate-100 shadow-3xs">
+            <LuCalendarDays className="text-xl text-[#028090] flex-shrink-0 mt-0.5" />
             <div>
-              <h4 className="font-bold text-gray-800">Availability</h4>
-              <p className="text-xs text-gray-500 mt-0.5 leading-relaxed">
-                {availability && availability.join(" | ")}
+              <h4 className="font-bold text-slate-800">Availability & Timing</h4>
+              <p className="text-xs text-slate-600 font-medium mt-1 leading-relaxed bg-slate-50 px-2 py-1 rounded border border-slate-100 inline-block">
+                {availability && availability.length > 0 ? availability.join(" | ") : "04:00 PM - 08:30 PM"}
               </p>
             </div>
           </div>
         </div>
 
-
-        <div className="flex flex-wrap gap-2 mb-6">
+        {/* Tags Section */}
+        <div className="flex flex-wrap items-center gap-2 mb-8 bg-white/50 p-3 rounded-xl border border-slate-100">
           {tags.map((tag, index) => (
             <span
               key={index}
-              className="text-xs font-medium text-gray-600 bg-gray-50 hover:bg-gray-100 border border-gray-200/60 px-3 py-1.5 rounded-md cursor-pointer transition-colors"
+              className="text-xs font-semibold text-slate-600 bg-white hover:bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-lg cursor-pointer transition-colors"
             >
               {tag}
             </span>
           ))}
-          <span className="text-xs font-bold text-[#05696E] hover:underline cursor-pointer pt-1.5 ml-1">
+          <span className="text-xs font-bold text-[#00A896] hover:text-[#028090] hover:underline cursor-pointer ml-2 transition-colors">
             View all
           </span>
         </div>
 
         {/* Bottom Part: Fee and Book Button */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-gray-100">
-          {/* Fee structure */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-5 border-t border-slate-200/60">
           <div className="text-center sm:text-left">
-            <p className="text-xs text-gray-400 font-medium uppercase tracking-wider">Consultation Fee</p>
-            <p className="text-2xl font-black text-gray-800 mt-0.5">
-              ৳ {fee} <span className="text-xs font-normal text-gray-500">(Incl. VAT)</span>
+            <p className="text-xs text-slate-400 font-bold uppercase tracking-wider">Consultation Fee</p>
+            <p className="text-2xl md:text-3xl font-black text-slate-800 mt-0.5">
+              ৳ {fee} <span className="text-xs font-medium text-slate-400 normal-case">(Incl. VAT)</span>
             </p>
           </div>
 
-          {/* Booking Button */}
-
-          <BookingModal doctorData={doctorData} />
+          <div className="w-full sm:w-auto">
+            <BookingModal doctorData={doctorData} />
+          </div>
         </div>
 
       </div>
     </div>
-  );
+  </div>
+);
 };
 
 export default DoctorDetailsPage;
